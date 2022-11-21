@@ -1,14 +1,37 @@
 public class Methods {
+    public static long permutation(int n, int r){
+        long sN = combination(n,r);
+        int rT = r;
+        for(int i = 1; i < r; i++){
+            rT *= i;
+        }
+        return sN * rT;
+    }
+    // the return type is long since factorial will create huge nums where int cannot hold
+    public static long  combination(int n, int r){
+        if(n < r) return -1;
+        int rT = r;
+        for(int i = 1; i < r; i++){
+            rT *= i;
+        }
+        long nT = n;
+        for(int i = n - r + 1; i < n; i++){
+            nT *= i;
+        }
+        return nT/rT;
+    }
+
+
     //finding greatest common divisor
     public static int gcd(int x, int y){
         int remain = x % y;
-        //System.out.println(x +  " = " + x/y+"*"+y+"+"+remain );
+        System.out.println(x +  " = " + x/y+"*"+y+"+"+remain );
         if(remain == 0) return y;
         return gcd(y,remain);
     }
     // using quick mod method to
     // the input should be a binary digit of the exponential
-    public static int mod(String input, int x, int y){
+    public static int modExpan(String input, int x, int y){
         int z = 1, power = x % y;
         for(int i = 0; i < input.length();i++){
             if(input.charAt(input.length() - 1 -i) == '1'){
@@ -109,6 +132,17 @@ public class Methods {
             }
             System.out.println(ans.toString()+"    "+i);
         }
+    }
+    public static int fib(int n){
+        if(n == 0) return 1;
+        if(n == 1) return 1;
+        return fib(n-1)+fib(n-2);
+    }
+
+    public static int recur(int n){
+        if(n == 0) return 7;
+        if(n == 1) return -5;
+        return (recur(n-2)-1)*recur(n-1);
     }
 
 }
